@@ -1,0 +1,26 @@
+.TabButton{
+    display: inline-block;
+    margin: 0px 0.2rem;
+}
+
+.TabButton:nth-child(1){
+    margin-left: 0px;
+}
+
+.TabButton>button{
+    background-color: transparent;
+    border: 2px solid rgb(109, 51, 124);
+    border-bottom: none;
+    border-radius: 0.2rem;
+    padding: 0.5rem 0.8rem;
+    color: var(--h3-color);
+}
+
+.TabButton>button:hover{
+    background-color: rgb(95, 42, 108);
+}
+
+
+.TabButton.selected>button{
+    background-color: rgb(112, 40, 188);
+}

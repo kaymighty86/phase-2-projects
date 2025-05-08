@@ -1,0 +1,16 @@
+.CoreConceptsSection{
+    background-color: rgb(9, 2, 20);
+    padding: 1rem;
+    width: 100%;
+    max-width: 50rem;
+    margin: 1.6rem auto;
+    box-sizing: border-box;
+}
+
+.CoreConceptsSection>main{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* align-items: center; */
+}

@@ -1,0 +1,18 @@
+.appHeader>.appLogo{
+    width: 7rem;
+    height: auto;
+}
+
+.appHeader h1{
+    width:fit-content;
+    font-size: 3.4rem;
+    line-height: 0.9;
+    margin: 0px auto 0px auto;
+    background: linear-gradient(90deg, rgb(243, 73, 255) 10rem, rgb(0, 174, 255));
+    background-clip: text;
+    color: transparent;
+}
+
+.appHeader p{
+    color: rgb(126, 80, 164);
+}

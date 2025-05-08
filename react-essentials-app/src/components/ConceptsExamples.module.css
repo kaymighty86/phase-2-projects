@@ -1,0 +1,20 @@
+.ConceptsExamples{
+    width: 100%;
+    max-width: 50rem;
+    margin: 1.6rem auto;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.ConceptsExamples>nav{
+    list-style-type: none;
+}
+
+.conceptDetails{
+    width: 100%;
+    background-color: rgb(42, 28, 59);
+    padding: 1rem;
+    margin: 0px 0px 3rem 0px;
+    border: 2px solid rgb(109, 51, 124);
+    box-sizing: border-box;
+}
