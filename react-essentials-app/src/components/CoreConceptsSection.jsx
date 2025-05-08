@@ -8,7 +8,7 @@ export default function CoreConceptsSection(){
     <Card className={Style.CoreConceptsSection}>
         <h2>Core Concepts</h2>
         <main>
-            {CORE_CONCEPTS.map((item)=><CoreConcept {...item}/>)}
+            {CORE_CONCEPTS.map((item)=><CoreConcept key={item.title} {...item}/>)}
         </main>
     </Card>
 );}
