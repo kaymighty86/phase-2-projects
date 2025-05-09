@@ -13,10 +13,10 @@ export default function ConceptsExamples(){
             <h2>Examples</h2>
             <nav>
                 {/* if the "currentConcept" state is not blank and its title is the same as the title of the concept a button represents, then the button/tab has been selected */}
-                <TabButton selected={currentConcept && currentConcept.title == EXAMPLES.components.title? true : false} onClick={()=>setViewedConcept(EXAMPLES.components)}>{EXAMPLES.components.title}</TabButton>
-                <TabButton selected={currentConcept && currentConcept.title == EXAMPLES.jsx.title? true : false} onClick={()=>setViewedConcept(EXAMPLES.jsx)}>{EXAMPLES.jsx.title}</TabButton>
-                <TabButton selected={currentConcept && currentConcept.title == EXAMPLES.props.title? true : false} onClick={()=>setViewedConcept(EXAMPLES.props)}>{EXAMPLES.props.title}</TabButton>
-                <TabButton selected={currentConcept && currentConcept.title == EXAMPLES.state.title? true : false} onClick={()=>setViewedConcept(EXAMPLES.state)}>{EXAMPLES.state.title}</TabButton>
+                <TabButton selected={currentConcept && currentConcept.title == EXAMPLES.components.title} onClick={()=>setViewedConcept(EXAMPLES.components)}>{EXAMPLES.components.title}</TabButton>
+                <TabButton selected={currentConcept && currentConcept.title == EXAMPLES.jsx.title} onClick={()=>setViewedConcept(EXAMPLES.jsx)}>{EXAMPLES.jsx.title}</TabButton>
+                <TabButton selected={currentConcept && currentConcept.title == EXAMPLES.props.title} onClick={()=>setViewedConcept(EXAMPLES.props)}>{EXAMPLES.props.title}</TabButton>
+                <TabButton selected={currentConcept && currentConcept.title == EXAMPLES.state.title} onClick={()=>setViewedConcept(EXAMPLES.state)}>{EXAMPLES.state.title}</TabButton>
             </nav>
             <Card className={Style.conceptDetails}>
                 {
