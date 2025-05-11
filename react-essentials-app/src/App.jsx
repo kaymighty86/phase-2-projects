@@ -7,8 +7,10 @@ export default function App() {
   return (
     <>
       <Header />
-      <CoreConceptsSection />
-      <ConceptsExamples />
+      <main>
+        <CoreConceptsSection />
+        <ConceptsExamples />
+      </main>
     </>
   )
 }

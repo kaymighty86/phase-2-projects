@@ -2,6 +2,7 @@ import Style from "./CoreConceptsSection.module.css";
 import Card from "./UI/Card";
 import CoreConcept from "./CoreConcept";
 import {CORE_CONCEPTS} from "../data-with-examples.js";
+import { Fragment } from "react";
 
 export default function CoreConceptsSection(){
     return(
