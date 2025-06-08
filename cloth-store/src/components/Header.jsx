@@ -1,9 +1,11 @@
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
+import { CartContext } from '../store/CartContext.jsx';
 
 import CartModal from './CartModal.jsx';
 
-export default function Header({ cart, onUpdateCartItemQuantity }) {
+export default function Header() {
   const modal = useRef();
+  const {cart} = useContext(CartContext);
 
   const cartQuantity = cart.items.length;
 
@@ -11,26 +13,9 @@ export default function Header({ cart, onUpdateCartItemQuantity }) {
     modal.current.open();
   }
 
-  let modalActions = <button>Close</button>;
-
-  if (cartQuantity > 0) {
-    modalActions = (
-      <>
-        <button>Close</button>
-        <button>Checkout</button>
-      </>
-    );
-  }
-
   return (
     <>
-      <CartModal
-        ref={modal}
-        cartItems={cart.items}
-        onUpdateCartItemQuantity={onUpdateCartItemQuantity}
-        title="Your Cart"
-        actions={modalActions}
-      />
+      <CartModal ref={modal} title="Your Cart" />
       <header id="main-header">
         <div id="main-title">
           <img src="logo.png" alt="Elegant model" />
