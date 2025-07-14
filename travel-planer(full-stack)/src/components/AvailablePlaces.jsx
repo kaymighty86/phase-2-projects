@@ -1,30 +1,42 @@
 import Places from './Places.jsx';
+import Error from './Error.jsx';
 import { useEffect, useState } from 'react';
+
+import errorLibrary from "../data/errorLibrary.json";
 
 export default function AvailablePlaces({ onSelectPlace }) {
 
   const [isLoading, setLoadingState] = useState(true);
+  const [error, setError] = useState(undefined);
   const [AVAILABLE_PLACES, setAvailablePlaces] = useState([]);
 
   useEffect(()=>{
     (async function fetchAvailablePlaces(){
-      const response = await fetch("http://localhost:3000/places");
+      const response = await fetch("http://localhost:3000/places").catch(()=>{setError(errorLibrary.networkError)});
       const responseData = await response.json();
-      setAvailablePlaces(responseData.places);
+      if(response.ok){
+        setAvailablePlaces(responseData.places);
+      }
+      else{
+        setError(responseData.message);
+      }
       setLoadingState(false);
     })();//execute immediately
 
   },[])
 
   return (
-    <Places
-      title="Available Places"
-      places={AVAILABLE_PLACES}
-      fallbackText="No places available."
-      isLoading={isLoading}
-      loadingText="Loading places. Plaease Wait..."
-      onSelectPlace={onSelectPlace}
-    />
+    <>
+      {error && <Error title="Error Loading Places" message={error}/>}
+      {!error && <Places
+        title="Available Places"
+        places={AVAILABLE_PLACES}
+        fallbackText="No places available."
+        isLoading={isLoading}
+        loadingText="Loading places. Plaease Wait..."
+        onSelectPlace={onSelectPlace}
+      />}
+    </>
   );
 }
 
