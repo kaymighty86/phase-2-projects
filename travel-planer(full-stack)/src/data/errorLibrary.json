@@ -1,4 +1,5 @@
 {
     "networkError": "Unable to connect... Please check your network connectivity.",
+    "locationError": "Unable to get location... Please check your network connectivity.",
     "customError": "Unable to handle this request at the moment."
 }

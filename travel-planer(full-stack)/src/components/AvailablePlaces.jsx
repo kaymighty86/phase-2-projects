@@ -1,8 +1,10 @@
-import Places from './Places.jsx';
-import Error from './Error.jsx';
 import { useEffect, useState } from 'react';
 
+import Places from './Places.jsx';
+import {Error as ErrorComp} from './Error.jsx';
 import errorLibrary from "../data/errorLibrary.json";
+import { fetchAvailablePlaces} from '../http.js';
+import {sortPlacesByDistance} from "../loc.js";
 
 export default function AvailablePlaces({ onSelectPlace }) {
 
@@ -11,23 +13,33 @@ export default function AvailablePlaces({ onSelectPlace }) {
   const [AVAILABLE_PLACES, setAvailablePlaces] = useState([]);
 
   useEffect(()=>{
-    (async function fetchAvailablePlaces(){
-      const response = await fetch("http://localhost:3000/places").catch(()=>{setError(errorLibrary.networkError)});
-      const responseData = await response.json();
-      if(response.ok){
-        setAvailablePlaces(responseData.places);
+    (async function loadAvailablePlaces(){
+      try{
+        // const as = 23 * ab;
+        const places = await fetchAvailablePlaces();
+
+        //get the user's geo location becuase we want to sort the places based on distance to player
+        navigator.geolocation.getCurrentPosition((location)=>{
+          let userLat = location.coords.latitude;
+          let userLon = location.coords.longitude;
+
+          setAvailablePlaces(sortPlacesByDistance(places, userLat, userLon));
+          setLoadingState(false);
+        }, (error)=>{
+          throw new Error(errorLibrary.locationError);
+        });
       }
-      else{
-        setError(responseData.message);
+      catch(error){
+        setError(error);
+        setLoadingState(false);
       }
-      setLoadingState(false);
     })();//execute immediately
 
   },[])
 
   return (
     <>
-      {error && <Error title="Error Loading Places" message={error}/>}
+      {error && <ErrorComp title="Error Loading Places" message={error}/>}
       {!error && <Places
         title="Available Places"
         places={AVAILABLE_PLACES}
