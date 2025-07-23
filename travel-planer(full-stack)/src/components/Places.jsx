@@ -1,3 +1,5 @@
+import Place from "./Place";
+
 export default function Places({ title, places, fallbackText, onSelectPlace, isLoading = false, loadingText }) {
   return (
     <section className="places-category">
@@ -7,12 +9,7 @@ export default function Places({ title, places, fallbackText, onSelectPlace, isL
       {!isLoading && places.length > 0 && (
         <ul className="places">
           {places.map((place) => (
-            <li key={place.id} className="place-item">
-              <button onClick={() => onSelectPlace(place)}>
-                <img src={`http://localhost:3000/${place.image.src}`} alt={place.image.alt} />
-                <h3>{place.title}</h3>
-              </button>
-            </li>
+            <Place key={place.id} placeData={place} onSelectPlace={onSelectPlace}/>
           ))}
         </ul>
       )}

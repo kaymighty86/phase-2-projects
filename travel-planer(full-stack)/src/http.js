@@ -15,18 +15,16 @@ export async function fetchAvailablePlaces(){
 export async function updateUserPlaces(userPlaces){
     const response = await fetch("http://localhost:3000/user-places", {
         method: "PUT",
-        body: {
-            "places" : JSON.stringify(userPlaces)
-        },
+        body: JSON.stringify({places: userPlaces}),
         headers: {
             "Content-Type" : "application/json"
         }
     });
-    const responseData = await response.JSON();
+    const responseData = await response.json();
 
     if(!response.ok){
         throw new Error (responseData.message);
     }
     
-    return responseData.message;
+    return response.ok;//just return the response status
 }

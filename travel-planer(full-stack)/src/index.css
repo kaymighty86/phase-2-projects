@@ -82,7 +82,7 @@ header p {
   list-style: none;
 }
 
-.place-item {
+.place-item,.place-item-dummy {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -90,6 +90,28 @@ header p {
   background: #1f1c2c;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   animation: slide-up-fade-in 0.3s ease-out forwards;
+}
+
+.place-item-dummy {
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: #86848d;
+}
+
+.place-item-dummy img{
+  width: 5.5rem;
+  height: auto;
+  animation: dummyPlaceLoadingAnim 1s linear infinite;
+}
+
+@keyframes dummyPlaceLoadingAnim{
+  0%{
+    transform: rotateZ(0deg);
+  }
+  100%{
+    transform: rotateZ(360deg);
+  }
 }
 
 .place-item button {

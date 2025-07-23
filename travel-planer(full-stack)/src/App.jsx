@@ -6,9 +6,13 @@ import DeleteConfirmation from './components/DeleteConfirmation.jsx';
 import logoImg from './assets/logo.png';
 import AvailablePlaces from './components/AvailablePlaces.jsx';
 
+import {updateUserPlaces} from "./http.js";
+
 function App() {
   const selectedPlace = useRef();
 
+  const [isLoading, setLoadingState] = useState(true);
+  const [error, setError] = useState(undefined);
   const [userPlaces, setUserPlaces] = useState([]);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -22,16 +26,39 @@ function App() {
     setModalIsOpen(false);
   }
 
-  function handleSelectPlace(selectedPlace) {
-    setUserPlaces((prevPickedPlaces) => {
-      if (!prevPickedPlaces) {
-        prevPickedPlaces = [];
+  async function handleSelectPlace(selectedPlace) {
+    if (!userPlaces.some((place) => place.id === selectedPlace.id)) {//if the selected place does not exist before in the list of selected places
+      //UPDATE LOCALLY BUT INITIALISE THE SYNCH STATUS
+      const newPlace = {...selectedPlace, synched: false};
+      setUserPlaces((prevPickedPlaces) => ([newPlace, ...prevPickedPlaces]));
+      
+      //UPDATE AT THE BACKEND
+      try{
+        //remove the "synched" prop from the objects before sending to the backend
+        const modifiedUserPlaces = userPlaces.map(place => {
+          let nPlace = {...place};
+          delete nPlace.synched;
+          return nPlace;
+        });
+
+        const updated = await updateUserPlaces([selectedPlace, ...modifiedUserPlaces]);//send
+        
+        if(updated){//if data was succesfully updated, update the synched status of the place locally
+          setUserPlaces((prevPickedPlaces) => {
+            return [...prevPickedPlaces].map(place => {
+                if(place.id == selectedPlace.id){
+                  return {...place, synched: true};
+                }
+                return place;
+              })
+          });
+        }
       }
-      if (prevPickedPlaces.some((place) => place.id === selectedPlace.id)) {
-        return prevPickedPlaces;
+      catch(error){
+        setError("Error updating selected places. " + error)
+        setUserPlaces(userPlaces);//reverse to previous state
       }
-      return [selectedPlace, ...prevPickedPlaces];
-    });
+    }
   }
 
   const handleRemovePlace = useCallback(async function handleRemovePlace() {
