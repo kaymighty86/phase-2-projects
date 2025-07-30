@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+
+import { selectedPlacesContext } from '../store/selectedPlacesContext.js';
 
 import Places from './Places.jsx';
 import {Error as ErrorComp} from './Error.jsx';
@@ -6,11 +8,13 @@ import errorLibrary from "../data/errorLibrary.json";
 import { fetchAvailablePlaces} from '../http.js';
 import {sortPlacesByDistance} from "../loc.js";
 
-export default function AvailablePlaces({ onSelectPlace }) {
+export default function AvailablePlaces() {
 
   const [isLoading, setLoadingState] = useState(true);
   const [error, setError] = useState(undefined);
   const [AVAILABLE_PLACES, setAvailablePlaces] = useState([]);
+
+  const {addSelectedPlace} = useContext(selectedPlacesContext);
 
   useEffect(()=>{
     (async function loadAvailablePlaces(){
@@ -30,7 +34,7 @@ export default function AvailablePlaces({ onSelectPlace }) {
         });
       }
       catch(error){
-        setError(error);
+        setError(error.toString());
         setLoadingState(false);
       }
     })();//execute immediately
@@ -46,7 +50,7 @@ export default function AvailablePlaces({ onSelectPlace }) {
         fallbackText="No places available."
         isLoading={isLoading}
         loadingText="Loading places. Plaease Wait..."
-        onSelectPlace={onSelectPlace}
+        onSelectPlace={addSelectedPlace}
       />}
     </>
   );

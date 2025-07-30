@@ -6,7 +6,18 @@ export async function fetchAvailablePlaces(){
     const responseData = await response.json();
 
     if(!response.ok){
-        throw new Error(responseData.message);
+        throw new Error(`${errorLibrary.customError} ${responseData.message}`);
+    }
+
+    return responseData.places;
+}
+
+export async function fetchSelectedPlaces(){
+    const response = await fetch("http://localhost:3000/user-places");
+    const responseData = await response.json();
+
+    if(!response.ok){
+        throw new Error(`${errorLibrary.customError} ${responseData.message}`);
     }
 
     return responseData.places;
