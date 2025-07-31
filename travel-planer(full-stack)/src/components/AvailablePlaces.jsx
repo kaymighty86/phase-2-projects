@@ -23,15 +23,22 @@ export default function AvailablePlaces() {
         const places = await fetchAvailablePlaces();
 
         //get the user's geo location becuase we want to sort the places based on distance to player
-        navigator.geolocation.getCurrentPosition((location)=>{
-          let userLat = location.coords.latitude;
-          let userLon = location.coords.longitude;
+        if(navigator.onLine){
+          navigator.geolocation.getCurrentPosition((location)=>{
+              let userLat = location.coords.latitude;
+              let userLon = location.coords.longitude;
 
-          setAvailablePlaces(sortPlacesByDistance(places, userLat, userLon));
+              setAvailablePlaces(sortPlacesByDistance(places, userLat, userLon));
+              setLoadingState(false);
+          },
+          ()=>{
+            console.log("Got here!");
+          });
+        }
+        else{
+          setAvailablePlaces(places);
           setLoadingState(false);
-        }, (error)=>{
-          throw new Error(errorLibrary.locationError);
-        });
+        }
       }
       catch(error){
         setError(error.toString());
