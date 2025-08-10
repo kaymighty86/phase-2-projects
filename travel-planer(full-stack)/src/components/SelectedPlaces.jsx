@@ -1,4 +1,4 @@
-import { useContext, useState, useRef, useCallback } from "react";
+import { useContext, useState, useRef } from "react";
 import { selectedPlacesContext } from "../store/selectedPlacesContext.js";
 
 import Places from "./Places";

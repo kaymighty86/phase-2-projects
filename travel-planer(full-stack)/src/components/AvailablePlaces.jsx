@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react';
+import { useContext } from 'react';
 
 import { selectedPlacesContext } from '../store/selectedPlacesContext.js';
 
@@ -12,7 +12,7 @@ import { useFetch } from '../customHooks/useFetch.js';
 async function fetchSortedPlaces(){
   const places = await fetchAvailablePlaces();
 
-  return new Promise((resolve, reject)=>{
+  return new Promise((resolve)=>{
     if(navigator.onLine){
       navigator.geolocation.getCurrentPosition((location)=>{
           let userLat = location.coords.latitude;
