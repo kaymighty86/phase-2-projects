@@ -1,30 +1,11 @@
 import { selectedPlacesContext } from "./selectedPlacesContext.js";
 
-import { useEffect, useState } from "react";
 import { fetchSelectedPlaces, updateUserPlaces } from "../http";
+import { useFetch } from "../customHooks/useFetch.js";
 
 export default function SelectedPlacesContextProvider({children}){
 
-    const [isLoading, setLoadingState] = useState(true);
-    const [error, setError] = useState(undefined);
-    const [selectedPlaces, setSelectedPlaces] = useState([]);
-
-    useEffect(()=>{
-        //fetch selected places from backend
-        (async function loadSelectedPlaces(){
-            setLoadingState(true);
-
-            try{
-                let selectedPlaces = await fetchSelectedPlaces();
-                setSelectedPlaces(selectedPlaces);
-                setLoadingState(false);
-            }
-            catch(error){
-                setError("Error fetching selected places: " + error);
-                setLoadingState(false);
-            }
-        })();
-    }, []);
+    const {isLoading, error, setError, fetchedData: selectedPlaces, setFetchedData: setSelectedPlaces} = useFetch(fetchSelectedPlaces, [])
 
     async function addSelectedPlace(selectedPlace) {
         if (!selectedPlaces.some((place) => place.id === selectedPlace.id)) {//if the selected place does not exist before in the list of selected places

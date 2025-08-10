@@ -39,3 +39,20 @@ export async function updateUserPlaces(userPlaces){
     
     return response.ok;//just return the response status
 }
+
+
+//decided to try out my own code for fetching information from backend via AJAX
+// function placesFetcher(endpointURL, requestData = {type: "GET", body: {}}){
+//   return new Promise((resolve, reject)=>{
+//     const placesRequest = new XMLHttpRequest();
+//     placesRequest.onreadystatechange = function(){
+//       if(this.readyState == 4){
+//         if(this.status == 200){
+//           resolve(JSON.parse(this.responseText));
+//         }
+//       }
+//     };
+//     placesRequest.open(requestData.type, endpointURL, true);
+//     placesRequest.send(JSON.stringify(requestData.body));
+//   });
+// }
