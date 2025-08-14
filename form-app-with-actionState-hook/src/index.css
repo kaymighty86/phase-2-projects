@@ -162,4 +162,5 @@ fieldset {
 .error {
   color: #ffca99;
   padding: 0 1rem;
+  list-style-type: none;
 }
