@@ -1,12 +1,13 @@
 import { useActionState, useContext } from "react";
 
 import { OpinionsContext } from "../store/opinions-context";
+import Submit from "./UI/Submit";
 
 export function NewOpinion() {
 
   const {addOpinion} = useContext(OpinionsContext);
 
-  function handleOpinionFormAction(prevState, formData){
+  async function handleOpinionFormAction(prevState, formData){
     const opinionSubmited = {
       userName: formData.get("userName"),
       title: formData.get("title"),
@@ -30,7 +31,7 @@ export function NewOpinion() {
     
     //return
     if(errors.length == 0){//if inputed data is good, send to backend
-      addOpinion(opinionSubmited);
+      await addOpinion(opinionSubmited);
       
       //clear the data so that will form will reset
       return {
@@ -78,9 +79,7 @@ export function NewOpinion() {
           </ul>
         </div>
 
-        <p className="actions">
-          <button type="submit">Submit</button>
-        </p>
+        <Submit />
       </form>
     </div>
   );
