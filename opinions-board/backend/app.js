@@ -85,6 +85,8 @@ app.post('/opinions', async (req, res) => {
 app.post('/opinions/:id/upvote', async (req, res) => {
   const { id } = req.params;
   await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  // return res.status(500).json({error:"bad"});//used this to test front-end's synchroisation
   try {
     const opinion = await upvoteOpinion(Number(id));
     if (!opinion) {

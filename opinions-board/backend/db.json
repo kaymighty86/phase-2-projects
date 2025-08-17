@@ -2,14 +2,14 @@
   "opinions": [
     {
       "id": 1755382257862,
-      "votes": 0,
+      "votes": 11,
       "userName": "Jeremy Ballz",
       "title": "I love turtles",
       "body": "Turtles are the mafia of the ocean."
     },
     {
       "id": 1755376979116,
-      "votes": 0,
+      "votes": 16,
       "userName": "LayAmbition",
       "title": "Frontend Development Rocks",
       "body": "Frontend Development is the enabler of the internet!!! Fight me!"
@@ -19,14 +19,14 @@
       "userName": "Maximilian Schwarzmüller",
       "title": "Do yourself a favor and learn React!",
       "body": "React is an amazing JavaScript library!\n\nDespite all it's shortcomings.",
-      "votes": 0
+      "votes": 4
     },
     {
       "id": 2,
       "userName": "Maximilian Schwarzmüller",
       "title": "React has more depth than you might first think!",
       "body": "React is a great library to learn, but it's not just about the basics. Dive deeper!\nFor example with this course!",
-      "votes": 0
+      "votes": 6
     }
   ]
 }

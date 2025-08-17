@@ -1,4 +1,27 @@
+import { useActionState, useOptimistic, use } from "react";
+
+import { OpinionsContext } from "../store/opinions-context";
+
 export function Opinion({ opinion: { id, title, body, userName, votes } }) {
+
+  const {upvoteOpinion, downvoteOpinion} = use(OpinionsContext);
+
+  //we will declare a "useOptimistic" hook that provides a temporary state which allows us update the votes count temporarily until the upvote action is completed at the backend then it will set its state to the real synchronised state of the votes
+  const [votesState, optimisticallyUpdate] = useOptimistic(votes, (prevState, mode)=>(mode == "upvote"? prevState + 1 : prevState - 1));
+  
+  async function upvoteAction(){
+    optimisticallyUpdate("upvote");
+    await upvoteOpinion(id);//initiate the real update
+  }
+
+  async function downvoteAction(){
+    optimisticallyUpdate("downvote");
+    await downvoteOpinion(id);//initiate the real update
+  }
+
+  const [upvoteState, dispatchUpvote, pendingUpvote] = useActionState(upvoteAction);
+  const [downvoteState, dispatchDownvote, pendingDownvote] = useActionState(downvoteAction);
+
   return (
     <article>
       <header>
@@ -7,7 +30,7 @@ export function Opinion({ opinion: { id, title, body, userName, votes } }) {
       </header>
       <p>{body}</p>
       <form className="votes">
-        <button>
+        <button formAction={dispatchUpvote} disabled={pendingUpvote || pendingDownvote}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -25,9 +48,9 @@ export function Opinion({ opinion: { id, title, body, userName, votes } }) {
           </svg>
         </button>
 
-        <span>{votes}</span>
+        <span>{votesState}</span>
 
-        <button>
+        <button formAction={dispatchDownvote} disabled={pendingUpvote || pendingDownvote}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

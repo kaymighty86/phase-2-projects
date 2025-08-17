@@ -37,8 +37,16 @@ export function OpinionsContextProvider({ children }) {
     setOpinions((prevOpinions) => [savedOpinion, ...prevOpinions]);
   }
 
-  function upvoteOpinion(id) {
-    setOpinions((prevOpinions) => {
+  async function upvoteOpinion(id) {
+    const response = await fetch("http://localhost:3000/opinions/"+id+"/upvote", {
+      method: "POST"
+    });
+    
+    if(!response.ok){//if there is a bad response, do nothing
+      return;
+    }
+
+    setOpinions((prevOpinions) => {//update front-end
       return prevOpinions.map((opinion) => {
         if (opinion.id === id) {
           return { ...opinion, votes: opinion.votes + 1 };
@@ -48,8 +56,16 @@ export function OpinionsContextProvider({ children }) {
     });
   }
 
-  function downvoteOpinion(id) {
-    setOpinions((prevOpinions) => {
+  async function downvoteOpinion(id) {
+    const response = await fetch("http://localhost:3000/opinions/"+id+"/downvote", {
+      method: "POST"
+    });
+
+    if(!response.ok){//if there is a bad response, do nothing
+      return;
+    }
+
+    setOpinions((prevOpinions) => {//update front-end
       return prevOpinions.map((opinion) => {
         if (opinion.id === id) {
           return { ...opinion, votes: opinion.votes - 1 };
