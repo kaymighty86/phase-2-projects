@@ -1,4 +1,5 @@
-const redux = require("redux");
+const redux = require("redux");//"require is a node function for importing libraries"
+// import { createStore } from "redux";//you can also just use the usual "import" syntax
 
 //create the stores reducer
 function reducerFunction(prevState = {count: 0}, action){
