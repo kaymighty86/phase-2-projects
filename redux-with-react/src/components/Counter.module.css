@@ -21,3 +21,11 @@
   margin: 2rem 0;
   font-weight: bold;
 }
+
+.value.invisible{
+  visibility: hidden;
+}
+
+.counter button{
+  margin: 1rem;
+}
