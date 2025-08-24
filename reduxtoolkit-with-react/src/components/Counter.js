@@ -4,10 +4,9 @@ import { useSelector, useDispatch, connect } from 'react-redux';
 import { counterActions } from '../store/reduxStore';
 
 const Counter = () => {
-  // const count = useSelector(state => state.count);
-  // const counterActive = useSelector(state => state.counterActive);
-  const count = 0;
-  const counterActive = true;
+  const count = useSelector(state => state.counterSlice.count);
+  const counterActive = useSelector(state => state.counterSlice.counterActive);
+  
   const dispatch = useDispatch();
   
   function increment(){
