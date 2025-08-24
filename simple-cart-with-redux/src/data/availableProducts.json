@@ -1,0 +1,23 @@
+[
+    {
+        "id": "item1",
+        "title": "Nvidea RTX 4090",
+        "price": 799.99,
+        "description": "Powerful GPU for Gaming.",
+        "quantity": 1
+    },
+    {
+        "id": "item2",
+        "title": "Intel Core i9 CPU",
+        "price": 899.99,
+        "description": "Powerful CPU for high demand processing.",
+        "quantity": 1
+    },
+    {
+        "id": "item3",
+        "title": "LogiTech G234 Ultra Keyboard",
+        "price": 199.99,
+        "description": "Powerful keyboard for Gaming.",
+        "quantity": 1
+    }
+]
