@@ -14,3 +14,10 @@
   padding: 0;
   margin: 0;
 }
+
+.cartHeader{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
