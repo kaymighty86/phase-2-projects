@@ -9,10 +9,10 @@ const Cart = (props) => {
 
   const cartItems = useSelector(store => store.cart.items);
 
-  const dispatchCartAction = useDispatch();
+  const dispatch = useDispatch();
 
   function handleToggleCartVisibiliy(){
-    dispatchCartAction(cartActions.toggleCartVisibility());
+    dispatch(cartActions.toggleCartVisibility());
   }
 
   return (

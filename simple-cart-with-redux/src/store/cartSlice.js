@@ -6,6 +6,9 @@ export const cartSlice = createSlice({
     name: "cart",
     initialState: {items:[], cartVisible: false},
     reducers: {
+        replaceCartItems(currentCart, action){
+            currentCart.items = action.payload;
+        },
         addItem(currentCart, action){//the reducer function takes in the previous "State" and the passwed "Payload" which can be anything
             const id = action.payload;
             const cartItems = currentCart.items;
