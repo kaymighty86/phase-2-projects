@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const products = [
     {
@@ -16,6 +16,13 @@ const products = [
 ]
 
 export default function ProductsPage(){
+
+    // const navigate = useNavigate();
+
+    // function clickHandler(){
+    //     navigate(`${product.id}`);//this is a means to programmatically nagivate between pages in the defined routes using router
+    // }
+
     return (
         <>
             <h1>Products</h1>

@@ -9,7 +9,7 @@ import Contact from "./components/pages/ContactPage";
 //create a router object and declare the different routes and their components
 const router = createBrowserRouter([
   {
-    path: "/root",
+    path: "/",
     element: <LayoutWrapper />,
     errorElement: <ErrorPage />,
     children: [
