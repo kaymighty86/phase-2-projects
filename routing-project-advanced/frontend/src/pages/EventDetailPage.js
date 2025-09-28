@@ -1,10 +1,11 @@
-import { useLoaderData } from "react-router-dom";
+import { useRouteLoaderData } from "react-router-dom";
 
 import EventItem from "../components/EventItem";
 
 export default function EventDetailPage(){
 
-    const data = useLoaderData();
+    // const data = useLoaderData();//this will get the loader data returned in this path before this page was loaded
+    const data = useRouteLoaderData("event-details");//this will get the loader data returned in the given path via the ID inputed in the hook
 
     return (
         <>
@@ -14,10 +15,10 @@ export default function EventDetailPage(){
 }
 
 export async function loader({request, params}){
-    const response = fetch(`http://localhost:8080/events/${params.eventId}`);
+    const response = await fetch(`http://localhost:8080/events/${params.eventId}`);
 
     if(!response.ok){
-        //DISPLAY ERROR error fetching events
+        throw new Response(JSON.stringify({message: "unable to load this event's information."}),{status: 500})
     }
 
     return response;

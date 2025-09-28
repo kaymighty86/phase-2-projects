@@ -23,7 +23,7 @@ export async function loader(){
   const response = await fetch('http://localhost:8080/events');
 
   if (!response.ok) {
-    //DISPLAY ERROR error fetching events
+    throw new Response(JSON.stringify({message: "Unable to load events."}),{status: 500});
   }
 
   return response;

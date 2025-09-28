@@ -1,11 +1,1 @@
-{
-  "events": [
-    {
-      "id": "e1",
-      "title": "A dummy event",
-      "date": "2023-02-22",
-      "image": "https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg",
-      "description": "Join this amazing event and connect with fellow developers."
-    }
-  ]
-}
+{"events":[{"title":"Groove Till  Dawn","image":"https://img.freepik.com/free-photo/people-celebrating-party_53876-14410.jpg","date":"2025-09-29","description":"Groove, dance, scatter","id":"db6969a3-a962-4ad2-95b4-1c1c3e479809"},{"title":"Pool Party","image":"https://www.windowworld.com/uploads/images/news/Family-enjoying-pool-party_window-world_hero.jpg","date":"2025-11-08","description":"Party and don't drown.","id":"48d8cd44-2346-431c-8e6e-897273a05666"},{"title":"Sunday Party","image":"https://www.flipout.co.uk/uploads/5f1f4e65-ceb3-49e5-9620-165648474c84/southampton-foampit.jpg","date":"2025-10-02","description":"Party and mingle","id":"bb1473ff-3689-4c20-aced-da73e7445adf"},{"title":"Party High Life","image":"https://media.istockphoto.com/id/501387734/photo/dancing-friends.jpg?s=612x612&w=0&k=20&c=SoTKXXMiJYnc4luzJz3gIdfup3MI8ZlROFNXRBruc10=","date":"2025-10-06","description":"Party Party Party. Go crazy!!","id":"277eb289-d841-4b1b-b6b8-42a6a72f930a"},{"title":"Party Next Door","image":"https://photos-cdn.catchmyparty.com/PL/photos/0264/9052/kio_kreations_sp22_25.jpg","date":"2025-10-03","description":"Party like never before and don't answer mama's call.","id":"322a827e-0f8e-4a87-8fd2-af84783b198d"}]}
